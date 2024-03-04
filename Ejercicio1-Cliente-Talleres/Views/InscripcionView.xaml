@@ -1,0 +1,44 @@
+﻿<Window x:Class="Ejercicio1_Cliente_Talleres.Views.InscripcionView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:vm="clr-namespace:Ejercicio1_Cliente_Talleres.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ejercicio1_Cliente_Talleres.Views"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="InscripcionView"
+        Height="483"
+        Width="594">
+    <Window.DataContext>
+        <vm:InscripcionesViewModel />
+    </Window.DataContext>
+    
+    
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin"
+                    Value="10" />
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin"
+                    Value="10" />
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="10">
+        <TextBlock>IP del servidor:</TextBlock>
+        <TextBox Text="{Binding IP}" />
+        <TextBlock Text="Nombre de la persona:" />
+        <TextBox Text="{Binding Datos.Nombre}"/>
+        <TextBlock Text="Nombre del taller:" />
+        <ComboBox Margin="10" SelectedItem="{Binding Datos.Taller}">
+            <system:String>Baile</system:String>
+            <system:String>Canto</system:String>
+            <system:String>Ninguno</system:String>
+        </ComboBox>
+        <Button Margin="10"
+                Command="{Binding InscripcionesCommand}"
+                Height="30"
+                Width="150">Inscribir</Button>
+    </StackPanel>
+</Window>
