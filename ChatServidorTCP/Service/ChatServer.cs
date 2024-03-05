@@ -7,17 +7,19 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace ChatServidorTCP.Service
 {
     public class ChatServer
     {
         TcpListener server = null!;
-        
+
         List<TcpClient> clients = new List<TcpClient>();
 
         //public Dictionary<IPEndPoint, string> Usuarios { get; set; } = new();
-        
+
         public event EventHandler<MensajeDto>? MensajeRecibido;
         public void Iniciar()
         {
@@ -29,7 +31,7 @@ namespace ChatServidorTCP.Service
 
         void Escuchar()
         {
-            while (server.Server.Connected)
+            while (server.Server.IsBound)
             {
                 var tcpClient = server.AcceptTcpClient();
                 clients.Add(tcpClient);
@@ -59,10 +61,13 @@ namespace ChatServidorTCP.Service
 
                 if (mensaje != null)
                 {
-
                     RelayMensaje(cliente, buffer);
-                    MensajeRecibido?.Invoke(this, mensaje);
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
 
+                        MensajeRecibido?.Invoke(this, mensaje);
+
+                    });
                 }
             }
             clients.Remove(cliente);
@@ -82,13 +87,20 @@ namespace ChatServidorTCP.Service
         }
         public void Detener()
         {
-            if (server != null)
+            try
             {
-                server.Stop();
-                foreach (var item in clients)
+                if (server != null)
                 {
-                    item.Close();
+                    server.Stop();
+                    foreach (var item in clients)
+                    {
+                        item.Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

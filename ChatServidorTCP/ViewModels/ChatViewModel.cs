@@ -36,8 +36,7 @@ namespace ChatServidorTCP.ViewModels
 
         private void Server_MensajeRecibido(object? sender, MensajeDto e)
         {
-            Dispatcher.CurrentDispatcher.Invoke(() =>
-            {
+           
                 if (e.Mensaje == "**HELLO")
                 {
                     e.Mensaje = $"{e.Origen} se ha conectado";
@@ -49,8 +48,7 @@ namespace ChatServidorTCP.ViewModels
                     Usuarios.Remove(e.Origen);
                 }
                 Mensajes.Add(e);
-            });
-
+          
 
         }
 
