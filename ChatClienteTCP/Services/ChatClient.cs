@@ -7,13 +7,14 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ChatClienteTCP.Services
 {
     public class ChatClient
     {
         TcpClient cliente = null!;
-       public string Equipo { get; set; } = null!;
+        public string Equipo { get; set; } = null!;
         public void Conectar(IPAddress ip)
         {
 
@@ -35,6 +36,8 @@ namespace ChatClienteTCP.Services
                 };
 
                 EnviarMensaje(msg);
+
+                RecibirMensaje();
 
             }
             catch (Exception ex)
@@ -74,8 +77,11 @@ namespace ChatClienteTCP.Services
 
                             var msg = JsonSerializer.Deserialize<MensajeDto>(Encoding.UTF8.GetString(buffer));
 
-                            if (msg != null)
-                                MensajeRecibido?.Invoke(this, msg);
+                            Application.Current.Dispatcher.Invoke((() =>
+                            {
+                                if (msg != null)
+                                    MensajeRecibido?.Invoke(this, msg);
+                            }));
                         }
 
                     }

@@ -12,7 +12,6 @@
     <Window.DataContext>
         <vm:ChatViewModel />
     </Window.DataContext>
-    
     <DockPanel Margin="10">
         <DockPanel DockPanel.Dock="Top">
             <Button Margin="5"
@@ -22,8 +21,7 @@
             <Button Margin="5"
                     Padding="10"
                     DockPanel.Dock="Right"
-                    Command="{Binding DetenerServerCommand}"
-                    >Detener</Button>
+                    Command="{Binding DetenerServerCommand}">Detener</Button>
             <TextBlock DockPanel.Dock="Top"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
@@ -34,7 +32,11 @@
                  Margin="10"
                  ItemsSource="{Binding Usuarios}"
                  Width="150"></ListBox>
-        <ListBox Margin="10" ItemsSource="{Binding Mensajes}" HorizontalAlignment="Stretch">
+        <ListBox Margin="10"
+                 ItemsSource="{Binding Mensajes}"
+                 HorizontalAlignment="Stretch"
+                 SelectedIndex="{Binding NumMensaje}"
+                >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White"
@@ -43,23 +45,16 @@
                             Padding="5"
                             CornerRadius="10">
                         <StackPanel>
-                            <TextBlock FontWeight="Bold" 
-                                       Text="{Binding Origen}"
-                                       />
+                            <TextBlock FontWeight="Bold"
+                                       Text="{Binding Origen}" />
                             <TextBlock TextAlignment="Justify"
                                        Text="{Binding Mensaje}" />
                             <TextBlock Text="{Binding Fecha}"
                                        HorizontalAlignment="Right" />
                         </StackPanel>
                     </Border>
-                    
-                    
-                    
-                    
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            
-            
         </ListBox>
     </DockPanel>
 </Window>

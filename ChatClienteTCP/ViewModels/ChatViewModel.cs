@@ -81,7 +81,6 @@ namespace ChatClienteTCP.ViewModels
 
                 Mensajes.Add(e);
                 NumMensaje = Mensajes.Count - 1;
-
                 PropertyChanged?.Invoke(this, new(nameof(NumMensaje)));
             });
 

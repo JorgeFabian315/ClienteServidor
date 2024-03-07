@@ -22,6 +22,8 @@ namespace ChatServidorTCP.ViewModels
         public ICommand DetenerServerCommand { get; set; }
         public string IP { get; set; } = "0.0.0.0";
         public ObservableCollection<MensajeDto> Mensajes { get; set; } = new();
+        public int NumMensaje { get;  set; }
+
         public ChatViewModel()
         {
             var direcciones = Dns.GetHostAddresses(Dns.GetHostName());
@@ -48,7 +50,8 @@ namespace ChatServidorTCP.ViewModels
                     Usuarios.Remove(e.Origen);
                 }
                 Mensajes.Add(e);
-          
+            NumMensaje = Mensajes.Count - 1;
+            PropertyChanged?.Invoke(this, new(nameof(NumMensaje)));
 
         }
 

@@ -8,7 +8,8 @@
         xmlns:local="clr-namespace:ChatClienteTCP"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="450"
+        WindowStartupLocation="CenterScreen"
+        Height="550"
         Width="800">
     <Window.DataContext>
         <vm:ChatViewModel />

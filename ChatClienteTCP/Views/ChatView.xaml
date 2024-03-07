@@ -19,7 +19,8 @@
                      Text="{Binding Mensaje}"
                      AcceptsReturn="True" />
         </DockPanel>
-        <ListBox Margin="5" ItemsSource="{Binding Mensajes}">
+        <ListBox Margin="5" ItemsSource="{Binding Mensajes}"
+                 SelectedIndex="{Binding NumMensaje}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White"
