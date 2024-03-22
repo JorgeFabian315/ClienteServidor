@@ -18,10 +18,10 @@ namespace ChatServidorTCP.ViewModels
     {
         public ChatServer Server { get; set; } = new();
         public ObservableCollection<string> Usuarios { get; set; } = new();
+        public ObservableCollection<MensajeDto> Mensajes { get; set; } = new();
         public ICommand IniciarServerCommand { get; set; }
         public ICommand DetenerServerCommand { get; set; }
         public string IP { get; set; } = "0.0.0.0";
-        public ObservableCollection<MensajeDto> Mensajes { get; set; } = new();
         public int NumMensaje { get;  set; }
 
         public ChatViewModel()

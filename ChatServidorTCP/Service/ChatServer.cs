@@ -18,8 +18,6 @@ namespace ChatServidorTCP.Service
 
         List<TcpClient> clients = new List<TcpClient>();
 
-        //public Dictionary<IPEndPoint, string> Usuarios { get; set; } = new();
-
         public event EventHandler<MensajeDto>? MensajeRecibido;
         public void Iniciar()
         {
@@ -49,12 +47,17 @@ namespace ChatServidorTCP.Service
             while (cliente.Connected)
             {
                 var ns = cliente.GetStream();
+
                 while (cliente.Available == 0)
                 {
                     Thread.Sleep(500);
                 }
+
+
                 byte[] buffer = new byte[cliente.Available];
+
                 ns.Read(buffer, 0, buffer.Length);
+               
                 string json = Encoding.UTF8.GetString(buffer);
 
                 var mensaje = JsonSerializer.Deserialize<MensajeDto>(json);
@@ -72,14 +75,14 @@ namespace ChatServidorTCP.Service
             }
             clients.Remove(cliente);
         }
-        void RelayMensaje(TcpClient cliente, byte[] mensaje)
+        void RelayMensaje(TcpClient cliente, byte[] buuffer)
         {
             foreach (var item in clients)
             {
                 if (item != cliente)//Enviar a todos menos al origen
                 {
                     var ns = item.GetStream();
-                    ns.Write(mensaje, 0, mensaje.Length);
+                    ns.Write(buuffer, 0, buuffer.Length);
                     ns.Flush();
 
                 }

@@ -57,12 +57,15 @@ namespace ChatClienteTCP.ViewModels
         {
             if (!string.IsNullOrWhiteSpace(Mensaje))
             {
-                cliente.EnviarMensaje(new MensajeDto()
+                var ms = new MensajeDto()
                 {
                     Fecha = DateTime.Now,
                     Origen = cliente.Equipo,
                     Mensaje = Mensaje
-                });
+                };
+                cliente.EnviarMensaje(ms);
+
+                Mensajes.Add(ms);
             }
         }
 
