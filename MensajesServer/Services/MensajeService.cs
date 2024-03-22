@@ -34,7 +34,7 @@ namespace MensajesServer.Services
                         Mensaje mensaje = new Mensaje()
                         {
                             Texto = context.Request.QueryString["texto"] ?? "",
-                            ColorLetra = context.Request.QueryString["letra"] ?? "#000",
+                            ColorLetra = context.Request.QueryString["colorletra"] ?? "#000",
                             ColorFondo = context.Request.QueryString["colorfondo"] ?? "#fff"
                         };
 
@@ -42,6 +42,14 @@ namespace MensajesServer.Services
                         {
                             MensajeRecibido?.Invoke(this, mensaje);
                         });
+
+                        context.Response.StatusCode = 200;
+                        context.Response.Close();
+                    }
+                    else
+                    {
+                        context.Response.StatusCode = 400;
+                        context.Response.Close();
                     }
 
 
