@@ -28,7 +28,7 @@ namespace MensajesClienteHTTP.Services
             cliente.Close();
         }
 
-        UdpClient cliente = new();
+        UdpClient cliente = new(7000);
         public event EventHandler<ServerModel>? ServidorRecibido;
         private void RecibirServidores()
         {
