@@ -31,7 +31,7 @@
                                     Header="Nombre del servidor"
                                     Binding="{Binding NombreServer}" />
                 <DataGridTextColumn  Header="Direccion de IP"
-                                     Binding="{Binding IPEndpoint.IPAddres}"
+                                     Binding="{Binding IPEndpoint.Address}"
                                      />
                 <DataGridTextColumn Header="Ultima Conexion" Binding="{Binding KeepAlive}"/>
             </DataGrid.Columns>
