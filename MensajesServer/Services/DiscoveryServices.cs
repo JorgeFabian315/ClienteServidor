@@ -15,6 +15,7 @@ namespace MensajesServer.Services
             EnableBroadcast = true
         };
         IPEndPoint destino = new(IPAddress.Broadcast, 7000);
+
         byte[] buffer;
         public DiscoveryServices()
         {

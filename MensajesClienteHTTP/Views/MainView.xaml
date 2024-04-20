@@ -16,9 +16,33 @@
             <TextBox AcceptsReturn="True"
                      Height="50" />
             <Label>color letra:</Label>
-            <ComboBox></ComboBox>
+            <ComboBox ItemsSource="{Binding Colores}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Rectangle Width="100"
+                                       Fill="{Binding .}"
+                                       Height="30"/>
+                            <TextBlock Text="{Binding Color}" Foreground="Black" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+                
+            </ComboBox>
             <Label>color fondo:</Label>
-            <ComboBox></ComboBox>
+            <ComboBox ItemsSource="{Binding Colores}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Rectangle Width="100"
+                                       Fill="{Binding .}"
+                                       Height="30" />
+                            <TextBlock Text="{Binding Color}"
+                                       Foreground="Black" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Content="Enviar"
                     Margin="0,10"
                     Padding="0,10" />
