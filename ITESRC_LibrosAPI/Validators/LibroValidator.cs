@@ -14,7 +14,7 @@ namespace ITESRC_LibrosAPI.Validators
 
         private bool ValidarURL(string url)
         {
-            return url.StartsWith("httpd://") && url.EndsWith(".jpg");
+            return url.StartsWith("https://") && url.EndsWith(".jpg");
         }
 
 
