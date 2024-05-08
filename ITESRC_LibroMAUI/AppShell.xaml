@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="ITESRC_LibroMAUI.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:ITESRC_LibroMAUI.Views"
+       xmlns:local="clr-namespace:ITESRC_LibroMAUI"
+       xmlns:vm="clr-namespace:ITESRC_LibroMAUI.ViewModels"
+       Shell.BackgroundColor="CornflowerBlue"
+       Shell.TitleColor="White"
+       Shell.FlyoutBehavior="Disabled">
+    
+    <Shell.BindingContext>
+        <vm:LibroViewModel />
+    </Shell.BindingContext>
+    
+    
+    <ShellContent ContentTemplate="{DataTemplate views:MainView}"
+                  Route="Lista" />
+    <ShellContent ContentTemplate="{DataTemplate views:AgregarView}"
+                  Route="Agregar" />
+    <ShellContent ContentTemplate="{DataTemplate views:EditarView}"
+                  Route="Editar" />
+</Shell>

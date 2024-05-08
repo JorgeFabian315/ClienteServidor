@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ITESRC_LibroMAUI.Views.EditarView"
+             Title="EditarView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Guardar" />
+        <ToolbarItem Text="Cancelar" />
+    </ContentPage.ToolbarItems>
+    <VerticalStackLayout Margin="20">
+        <VerticalStackLayout.Resources>
+            <Style TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="Black" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="TextColor"
+                        Value="Black" />
+            </Style>
+        </VerticalStackLayout.Resources>
+        <Label Text="Titulo" />
+        <Entry />
+        <Label Text="Autor" />
+        <Entry />
+        <Label Text="URL Portada" />
+        <Entry Keyboard="Url" />
+    </VerticalStackLayout>
+</ContentPage>

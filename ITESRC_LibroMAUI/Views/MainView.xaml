@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ITESRC_LibroMAUI.Models.Entities"
+             xmlns:vm="clr-namespace:ITESRC_LibroMAUI.ViewModels"
+             x:Class="ITESRC_LibroMAUI.Views.MainView"
+             x:DataType="vm:LibroViewModel"
+             Title="lista de libros"
+             Background="GhostWhite">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nuevo"
+                     Command="{Binding NuevoCommand}"></ToolbarItem>
+        <ToolbarItem Text="Eliminar"
+                     Command="{Binding EliminarCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <!--<ListView ItemsSource="{Binding Libros}"
+              x:Name="lisview"
+              SelectedItem="{Binding LibroSeleccionado}"
+              HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate x:DataType="model:Libro">
+                <ViewCell>
+                    
+                    <Grid RowDefinitions="auto, auto"
+                          Margin="0,0,0,0"
+                          ColumnDefinitions="50, *">
+                        <Label TextColor="Black"
+                               Text="{Binding Titulo}"
+                               Grid.Column="1" />
+                        <Label TextColor="Gray"
+                               Text="{Binding Autor}"
+                               Grid.Column="1"
+                               Grid.Row="1" />
+                        <Image Aspect="AspectFit"
+                               Margin="10"
+                               MaximumHeightRequest="150"
+                               Source="{Binding Portada}"
+                               Grid.RowSpan="2" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+    <CollectionView ItemsSource="{Binding Libros}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding LibroSeleccionado}"
+                    ItemsLayout="VerticalGrid,2">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:Libro">
+                <Grid RowDefinitions="auto, auto"
+                      Margin="10"
+                      ColumnDefinitions=".5*, .5*">
+                    <VerticalStackLayout Grid.Column="1"
+                                         Grid.RowSpan="2"
+                                         VerticalOptions="Center">
+                        <Label TextColor="Black"
+                               Text="{Binding Titulo}" />
+                        <Label TextColor="Gray"
+                               Text="{Binding Autor}" />
+                    </VerticalStackLayout>
+                    <Image Aspect="AspectFill"
+                           Margin="10"
+                           HeightRequest="150"
+                           WidthRequest="100"
+                           Source="libro.jpg"
+                           Grid.RowSpan="2" />
+                    <Image Aspect="AspectFill"
+                           Margin="10"
+                           HeightRequest="150"
+                           WidthRequest="100"
+                           Source="{Binding Portada}"
+                           Grid.RowSpan="2" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
