@@ -12,7 +12,15 @@ namespace PruebaJWT.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Hola Mundo");
+            var context = HttpContext;
+
+            if (User.Identity != null)
+            {
+                return Ok("Hola" + User.Identity.Name);
+            }
+
+            return Ok("Hola");
+
         }
     }
 }
